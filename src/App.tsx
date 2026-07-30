@@ -11,12 +11,15 @@ import Facilities from './components/Facilities';
 import Departments from './components/Departments';
 import Personnel from './components/Personnel';
 import Nexus from './components/Nexus';
+import StatusBar from './components/StatusBar';
 
 function App() {
   const [theme, setTheme] = useState('lofi');
   const [view, setView] = useState('terminal');
   const [history, setHistory] = useState<string[]>([]);
   const [selectedEntryId, setSelectedEntryId] = useState<string | null>(null);
+  const [timeOverride] = useState<Date | null>(null);
+  const [clearanceLevel] = useState(2);
 
   const navigate = (nextView: string) => {
     setHistory((prev) => [...prev, view]);
@@ -63,7 +66,10 @@ function App() {
   return (
     <div data-theme={theme} className="app-root">
       <TitleBar view={view} setView={navigate} goBack={goBack} canGoBack={history.length > 0} />
-      {renderView()}
+      <div className="app-content">
+        {renderView()}
+      </div>
+      <StatusBar timeOverride={null} clearanceLevel={2} />
     </div>
   );
 }

@@ -1,3 +1,6 @@
+import LoadingBar from './LoadingBar';
+import AlertBanner from './AlertBanner';
+
 interface SettingsProps {
   theme: string;
   setTheme: (theme: string) => void;
@@ -29,6 +32,18 @@ function Settings({ theme, setTheme }: SettingsProps) {
       <div className="glass-panel glass-panel--rose">
         <h3>Display</h3>
         <p className="settings-placeholder">Font size — coming soon</p>
+      </div>
+
+      {/* temporary preview */}
+      <div className="glass-panel glass-panel--rose" style={{ marginTop: '16px' }}>
+        <h3>Component Preview</h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <LoadingBar label="SCANNING SECTOR 01" value={64.2} />
+          <LoadingBar label="DECRYPTING FILE" value={91.7} />
+        </div>
+        <div style={{ marginTop: '14px' }}>
+          <AlertBanner message="Anomaly containment integrity: warning" />
+        </div>
       </div>
     </div>
   );
